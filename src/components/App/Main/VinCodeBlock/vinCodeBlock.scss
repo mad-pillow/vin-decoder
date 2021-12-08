@@ -15,7 +15,7 @@
   }
 
   &__request-block,
-  &__hystory-block {
+  &__history-block {
     flex: 1 1 50%;
     display: flex;
     flex-direction: column;
@@ -27,11 +27,11 @@
     box-shadow: var(--block-shadow);
   }
 
-  &__hystory-list {
+  &__history-list {
     list-style: none;
   }
 
-  &__hystory-item {
+  &__history-item {
     cursor: pointer;
     text-align: center;
 

@@ -54,7 +54,7 @@ export default class VinCodeBlock extends Component {
       return <li
         key={index}
         id={VINNodeText}
-        className="vin-code__hystory-item"
+        className="vin-code__history-item"
         onClick={this.handleVINListChose}>{VINNodeText}</li>;
     });
 
@@ -72,8 +72,8 @@ export default class VinCodeBlock extends Component {
             <button type="submit" className="vin-code__request-btn">Request VIN</button>
           </form>
         </div>
-        <div className="vin-code__hystory-block">
-          <ul className="vin-code__hystory-list">
+        <div className="vin-code__history-block">
+          <ul className="vin-code__history-list">
             {VINNodesList}
           </ul>
         </div>
