@@ -8,12 +8,13 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: #418aca;
+  background-color: var(--blue);
+  box-shadow: var(--block-shadow);
 
   &__logo-link,
   &__nav-link {
     text-decoration: none;
-    color: #fff;
+    color: var(--white);
   }
 
   &__logo-link {
@@ -33,7 +34,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background-color: #fff;
+      background-color: var(--white);
       transition: width 0.2s ease-in-out;
     }
 
