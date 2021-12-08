@@ -1,9 +1,8 @@
 import './variables.scss';
+import InfoBlock from '../../Shared/InfoBlock/InfoBlock';
 
 export default function Variables() {
   return (
-    <section>
-      <h1>Hello world</h1>
-    </section>
+    <InfoBlock/>
   )
 }

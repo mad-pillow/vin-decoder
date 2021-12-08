@@ -2,7 +2,6 @@ import "./app.scss";
 import React, { Component } from "react";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
-import Variables from "./Variables/Variables";
 
 class App extends Component {
   render() {
@@ -10,7 +9,6 @@ class App extends Component {
       <div className="wrapper">
         <Header />
         <Main />
-        <Variables />
       </div>
     );
   }  
