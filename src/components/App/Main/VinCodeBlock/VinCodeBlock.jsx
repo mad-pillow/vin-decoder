@@ -9,7 +9,6 @@ export default class VinCodeBlock extends Component {
 
     this.state = {
       currentVIN: "",
-      VINList: JSON.parse(localStorage.getItem("VINList")) || [undefined, undefined, undefined, undefined, undefined],
     }
   }
 
@@ -19,43 +18,27 @@ export default class VinCodeBlock extends Component {
     this.VINInputRef.current.focus();
     this.VINInputRef.current.value = "";
 
-    const VINList = [...this.state.VINList];
+    const VINListClone = [...this.props.VINList];
 
-    VINList.unshift(this.state.currentVIN);
-    VINList.splice(5);
+    VINListClone.unshift(this.state.currentVIN);
+    VINListClone.splice(5);
 
-    localStorage.setItem("VINList", JSON.stringify(VINList));
-    this.setState({ VINList: VINList });
+    this.props.handleVINList(VINListClone);
   }
 
   handleChange = (e) => {
     this.setState({ currentVIN: e.target.value });
   }
 
-  handleVINListChose = (e) => {
-    const listItemId = e.target.id;
-    let VINList = this.state.VINList;
-
-    if (!listItemId || listItemId === "Empty slot") {
-      return;
-    }
-
-    VINList = VINList.filter(item => item !== listItemId);
-    VINList.unshift(listItemId);
-
-    localStorage.setItem("VINList", JSON.stringify(VINList));
-    this.setState({ VINList: VINList });
-  }
-
   render() {
-    const VINNodesList = this.state.VINList.map((vin, index) => {
+    const VINNodesList = this.props.VINList.map((vin, index) => {
       const VINNodeText = vin ? vin : "Empty slot";
       
       return <li
         key={index}
         id={VINNodeText}
         className="vin-code__history-item"
-        onClick={this.handleVINListChose}>{VINNodeText}</li>;
+        onClick={this.props.handleVINListChose}>{VINNodeText}</li>;
     });
 
     return (
