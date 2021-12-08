@@ -1,12 +1,12 @@
 import "./app.scss";
 import React, { Component } from "react";
+import Header from "./Header/Header";
 
 class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        Hello world
-        {/* <Header /> */}
+        <Header />
         {/* <Main /> */}
         {/* <Variables /> */}
       </div>
