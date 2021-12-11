@@ -61,7 +61,7 @@ class App extends Component {
     this.handleCarInfo(activeVIN);
   }
 
-  handleVINListChose = (e) => {
+  handleVINListChoose = (e) => {
     const listItemId = e.target.dataset.value;
     let VINListClone = this.state.VINList;
 
@@ -90,7 +90,7 @@ class App extends Component {
           carDataFetching={this.state.carDataFetching}
           handleVINList={this.handleVINList}
           handleActiveVIN={this.handleActiveVIN}
-          handleVINListChose={this.handleVINListChose}
+          handleVINListChoose={this.handleVINListChoose}
           VINList={this.state.VINList}
           handleCarDataList={this.handleCarDataList}
           />

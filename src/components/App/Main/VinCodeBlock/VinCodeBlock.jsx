@@ -56,7 +56,7 @@ export default class VinCodeBlock extends Component {
         data-value={VINNodeText}
         className="vin-code__history-item"
         onClick={(e) => {
-          this.props.handleVINListChose(e);
+          this.props.handleVINListChoose(e);
           this.setState({ isVinCorrect: true });
         }
   }> { VINNodeText }</li >;
