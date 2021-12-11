@@ -1,0 +1,36 @@
+.fetch-message {
+  &__container {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--semi-gray);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    box-shadow: var(--block-shadow);
+    animation: fetch-message-animation 10s ease-in 0s 1;
+  }
+
+  &__message {
+    text-align: center;
+  }
+}
+
+@keyframes fetch-message-animation {
+  0% {
+    transform: translate(-50%, 100%);
+  }
+  10% {
+    transform: translate(-50%, 0);
+  }
+  90% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-50%, 100%);
+  }
+}
