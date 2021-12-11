@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       activeVIN: "",
       VINList: JSON.parse(localStorage.getItem("VINList")) || [null, null, null, null, null],
-      carDataList: {},
+      carDataList: JSON.parse(localStorage.getItem("CarDataList")) || {},
       fetchCarDataMessage: "",
       carDataFetching: false,
       variables: [],
@@ -30,15 +30,25 @@ class App extends Component {
   }
 
   handleCarInfo = (vin) => {
+    if (this.state.VINList.includes(vin)) {
+      return;
+    }
+
     this.setState({ carDataFetching: true });
 
     this.vinService.getCarData(vin).then(data => {
       let carDataListClone = JSON.parse(JSON.stringify(this.state.carDataList));
 
       carDataListClone[vin] = data.carData;
-      carDataListClone = Object.fromEntries(Object.entries(carDataListClone).slice(-5));
+      localStorage.setItem("CarDataList", JSON.stringify(carDataListClone));
       this.setState({ carDataList: carDataListClone, fetchCarDataMessage: data.message, carDataFetching: false });
     });
+  }
+
+  handleCarDataList = (vin) => {
+    let carDataListClone = JSON.parse(JSON.stringify(this.state.carDataList));
+    delete carDataListClone[vin];
+    this.setState({ carDataList: carDataListClone });
   }
 
   handleVINList = (VINListClone) => {
@@ -81,7 +91,9 @@ class App extends Component {
           handleVINList={this.handleVINList}
           handleActiveVIN={this.handleActiveVIN}
           handleVINListChose={this.handleVINListChose}
-          VINList={this.state.VINList} />
+          VINList={this.state.VINList}
+          handleCarDataList={this.handleCarDataList}
+          />
       </div>
     );
   }  

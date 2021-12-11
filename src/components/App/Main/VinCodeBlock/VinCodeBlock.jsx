@@ -18,13 +18,21 @@ export default class VinCodeBlock extends Component {
     this.VINInputRef.current.focus();
     this.VINInputRef.current.value = "";
 
-    const VINListClone = [...this.props.VINList];
+    this.props.handleActiveVIN(this.state.currentVIN);
+
+    let VINListClone = [...this.props.VINList];
+    const vinToBeDeleted = VINListClone[VINListClone.length - 1];
+
+    if (this.props.VINList.includes(this.state.currentVIN)) {
+      VINListClone = VINListClone.filter(vin => vin !== this.state.currentVIN);
+    } else {
+      this.props.handleCarDataList(vinToBeDeleted);
+    }
 
     VINListClone.unshift(this.state.currentVIN);
     VINListClone.splice(5);
 
     this.props.handleVINList(VINListClone);
-    this.props.handleActiveVIN(this.state.currentVIN);
   }
 
   handleChange = (e) => {

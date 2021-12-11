@@ -22,7 +22,7 @@ function InfoBlockContainer(props) {
   return (
     <>
       <InfoBlock info={props.infoCarData} />
-      <FetchMessageWindow fetchMessage={props.fetchCarDataMessage}/>
+      <FetchMessageWindow fetchMessage={props.fetchCarDataMessage} />
     </>
   )
 }
