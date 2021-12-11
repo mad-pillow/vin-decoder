@@ -13,7 +13,7 @@ export default function Variables({ infoVariables, variablesFetching, fetchVaria
   return (
     <>
       <h2 className="page-title">You can find the list of all available VIN decryption variables below:</h2>
-      <InfoBlock info={infoVariables} />
+      <InfoBlock info={infoVariables} isNavigable={true} />
       <FetchMessageWindow fetchMessage={fetchVariablesMessage}/>
     </>
   )

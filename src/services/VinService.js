@@ -34,10 +34,23 @@ class VinService {
     const variables = await this.getData(`${this.API_URL}getvehiclevariablelist?format=json`);
 
     const processedVariablesData = variables.Results.map((variable) => {
-      return { Name: variable.Name, Description: variable.Description };
+      return { Id: variable.ID, Name: variable.Name, Description: variable.Description };
     });
 
     return { message: variables.Message, variables: processedVariablesData };
+  }
+
+  async getVariableDetails(id) {
+    const variables = await this.getData(`${this.API_URL}getvehiclevariablelist?format=json`);
+    let variableDetails = {};
+    variables.Results.forEach((item) => {
+      if (item.ID === Number(id)) {
+        variableDetails = Object.assign({}, item);
+        return;
+      }
+    });
+
+    return variableDetails;
   }
 }
 

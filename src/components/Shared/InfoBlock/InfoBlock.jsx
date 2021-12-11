@@ -1,12 +1,21 @@
 import './infoBlock.scss';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function InfoBlock( props ) {
   let tableHeaders = ["Header 1", "Header 2"];
   let infoValuesRows = [];
+  let navigate = useNavigate();
 
-  const { info } = props;
-  
+  const { info, isNavigable } = props;
+  const rowIsClickable = isNavigable ? " info__row--clickable" : "";
+
+  function navigateTo(linkId) {
+    if (!isNavigable) return;
+
+    navigate(linkId);
+  }
+
   if (!info && !Array.isArray(info)) {
     return (
       <p>If you like to get description of a car by its VIN code enter the code above</p>
@@ -21,20 +30,15 @@ export default function InfoBlock( props ) {
 
   infoValuesRows = info.map((infoValuesRow, index) => {
     const infoValues = Object.values(infoValuesRow).map((infoValue, index) => {
-      return <td className="info__data" key={index} dangerouslySetInnerHTML={{__html: infoValue}}></td>
-    })
+      return <td className="info__data" key={index} dangerouslySetInnerHTML={{ __html: infoValue }}></td>
+    });
     
     return (
-      <tr className="info__row" key={index}>
+      <tr className={`info__row${rowIsClickable}`} key={index} onClick={() => { navigateTo(`${infoValuesRow.Id}`) }}>
         {infoValues}
       </tr>
     )
   })
-
-
-
-
-
 
   return (
     <div className="info__container">
