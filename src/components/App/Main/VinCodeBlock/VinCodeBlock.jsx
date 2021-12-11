@@ -24,6 +24,7 @@ export default class VinCodeBlock extends Component {
     VINListClone.splice(5);
 
     this.props.handleVINList(VINListClone);
+    this.props.handleActiveVIN(this.state.currentVIN);
   }
 
   handleChange = (e) => {
@@ -36,7 +37,7 @@ export default class VinCodeBlock extends Component {
       
       return <li
         key={index}
-        id={VINNodeText}
+        data-value={VINNodeText}
         className="vin-code__history-item"
         onClick={this.props.handleVINListChose}>{VINNodeText}</li>;
     });

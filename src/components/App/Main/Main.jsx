@@ -8,7 +8,7 @@ export default function Main(props) {
     <main className="main-container">
       <Routes>
         <Route path="/" element={<BaseBlock {...props}/>} />
-        <Route path="/variables" element={<Variables />} />
+        <Route path="/variables" element={<Variables {...props}/>} />
       </Routes>
     </main>
   )
