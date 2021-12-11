@@ -4,6 +4,10 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 1rem;
+
+    @media screen and (max-width: 640px) {
+      flex-direction: column;
+    }
   }
 
   &__request-form {
@@ -41,6 +45,10 @@
 
     &:hover {
       color: var(--blue);
+    }
+
+    @media screen and (max-width: 420px) {
+      padding: 5px 0;
     }
   }
 

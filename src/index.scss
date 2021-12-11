@@ -32,4 +32,12 @@ body,
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
   font-size: 16px;
+
+  @media screen and (max-width: 420px) {
+    font-size: 12px;
+  }
+}
+
+body .body--no-overflow {
+  overflow: hidden;
 }

@@ -1,4 +1,5 @@
 .header {
+  position: relative;
   padding: 0 20px;
   width: 100%;
   height: 5rem;
@@ -10,6 +11,27 @@
 
   background-color: var(--blue);
   box-shadow: var(--block-shadow);
+
+  &__nav-container {
+    overflow: auto;
+    transition: all 0.2s ease-in-out;
+
+    &--closed {
+      @media screen and (max-width: 640px) {
+        transform: translateX(100%);
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: var(--dark-gray);
+    }
+  }
 
   &__logo-link,
   &__nav-link {
@@ -27,6 +49,12 @@
     font-weight: 400;
     font-size: 1.2rem;
 
+    @media screen and (max-width: 640px) {
+      width: 100%;
+      display: block;
+      line-height: 4rem;
+    }
+
     &::after {
       content: "";
       position: absolute;
@@ -36,10 +64,19 @@
       height: 2px;
       background-color: var(--white);
       transition: width 0.2s ease-in-out;
+
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
     }
 
     &:hover::after {
       width: 100%;
+    }
+
+    @media screen and (max-width: 640px) {
+      font-size: 2rem;
+      color: var(--blue);
     }
   }
 
@@ -49,9 +86,69 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 640px) {
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &__nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 640px) {
+      text-align: center;
+      width: 100%;
+    }
   }
 
   &__nav-item + &__nav-item {
     margin-left: 1rem;
+
+    @media screen and (max-width: 640px) {
+      margin-left: 0;
+    }
+  }
+
+  &__menu-btn-container {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: none;
+    cursor: pointer;
+
+    @media screen and (max-width: 640px) {
+      display: block;
+    }
+  }
+
+  &__menu-btn {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--white);
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--white);
+    }
+
+    &::after {
+      top: -200%;
+    }
+
+    &::before {
+      bottom: -200%;
+    }
   }
 }
