@@ -4,7 +4,7 @@ import VinService from '../../../../services/VinService';
 import { useState, useEffect } from 'react';
 import Spinner from '../../../Shared/Spinner/Spinner';
 
-export default function VariableDetails({ infoVariables }) {
+export default function VariableDetails({ infoVariables, preventVariablesFetchMsg }) {
   const { id } = useParams();
   const [variable, setVariable] = useState({});
   const [fetchingVariable, setFetchingVariable] = useState(false);

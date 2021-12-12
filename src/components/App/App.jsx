@@ -16,17 +16,23 @@ class App extends Component {
       VINList: JSON.parse(localStorage.getItem("VINList")) || [null, null, null, null, null],
       carDataList: JSON.parse(localStorage.getItem("CarDataList")) || {},
       fetchCarDataMessage: "",
-      carDataFetching: false,
+      carDataFetching: null,
       variables: [],
       fetchVariablesMessage: "",
-      variablesFetching: true,
+      variablesFetching: null,
     }
   }
 
   handleVariables = () => {
+    this.setState({ variablesFetching: true });
+    
     this.vinService.getVariables().then(data => {
       this.setState({variables: data.variables, fetchVariablesMessage: data.message, variablesFetching: false});
     });
+  }
+
+  preventVariablesFetchMsg = () => {
+    this.setState({ variablesFetching: null });
   }
 
   handleCarInfo = (vin) => {
@@ -43,6 +49,10 @@ class App extends Component {
       localStorage.setItem("CarDataList", JSON.stringify(carDataListClone));
       this.setState({ carDataList: carDataListClone, fetchCarDataMessage: data.message, carDataFetching: false });
     });
+  }
+
+  preventCarInfoFetchMsg = () => {
+    this.setState({ carDataFetching: null });
   }
 
   handleCarDataList = (vin) => {
@@ -93,6 +103,8 @@ class App extends Component {
           handleVINListChoose={this.handleVINListChoose}
           VINList={this.state.VINList}
           handleCarDataList={this.handleCarDataList}
+          preventCarInfoFetchMsg={this.preventCarInfoFetchMsg}
+          preventVariablesFetchMsg={this.preventVariablesFetchMsg}
           />
       </div>
     );
