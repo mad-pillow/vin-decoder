@@ -19,6 +19,10 @@ export default class Header extends Component {
     }
   }
 
+  closeNavMenu = () => {
+      this.setState({ isMenuClose: true });
+  }
+
   render() {
     let openMenuClassName = "";
 
@@ -34,7 +38,7 @@ export default class Header extends Component {
         <div className="header__logo-container">
           <Link className="header__logo-link" to="/">VIN DECODER</Link>
         </div>
-        <nav className={`header__nav-container${openMenuClassName}`} onClick={this.toggleNavMenu}>
+        <nav className={`header__nav-container${openMenuClassName}`} onClick={this.closeNavMenu}>
           <ul className="header__nav-list">
             <li className="header__nav-item"><Link to="/" className="header__nav-link">Main page</Link></li>
             <li className="header__nav-item"><Link to="/variables" className="header__nav-link">Variables</Link></li>
