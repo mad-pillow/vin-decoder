@@ -1,8 +1,8 @@
 import './main.scss';
-import BaseBlock from './BaseBlock/BaseBlock';
-import Variables from '../Variables/Variables';
+import BaseBlock from './BaseBlock';
+import Variables from '../Variables';
 import { Routes, Route } from "react-router-dom";
-import VariableDetails from '../Variables/VariableDetails/VariableDetails';
+import VariableDetails from '../Variables/VariableDetails';
 
 export default function Main(props) {
   return (

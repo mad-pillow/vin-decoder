@@ -2,7 +2,7 @@ import './variableDetails.scss';
 import { useParams } from "react-router-dom"
 import VinService from '../../../../services/VinService';
 import { useState, useEffect } from 'react';
-import Spinner from '../../../Shared/Spinner/Spinner';
+import Spinner from '../../../Shared/Spinner';
 
 export default function VariableDetails({ infoVariables, preventVariablesFetchMsg }) {
   const { id } = useParams();

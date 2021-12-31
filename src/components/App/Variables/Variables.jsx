@@ -1,7 +1,7 @@
 import './variables.scss';
-import InfoBlock from '../../Shared/InfoBlock/InfoBlock';
-import Spinner from '../../Shared/Spinner/Spinner';
-import FetchMessageWindow from '../../Shared/FetchMessageWindow/FetchMessageWindow';
+import InfoBlock from '../../Shared/InfoBlock';
+import Spinner from '../../Shared/Spinner';
+import FetchMessageWindow from '../../Shared/FetchMessageWindow';
 import { useEffect } from 'react';
 
 export default function Variables({ infoVariables, variablesFetching, fetchVariablesMessage, preventVariablesFetchMsg }) {

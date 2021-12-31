@@ -1,7 +1,7 @@
-import InfoBlock from "../../../Shared/InfoBlock/InfoBlock";
-import Spinner from "../../../Shared/Spinner/Spinner";
-import VinCodeBlock from "../VinCodeBlock/VinCodeBlock";
-import FetchMessageWindow from "../../../Shared/FetchMessageWindow/FetchMessageWindow";
+import InfoBlock from "../../../Shared/InfoBlock";
+import Spinner from "../../../Shared/Spinner";
+import VinCodeBlock from "../VinCodeBlock";
+import FetchMessageWindow from "../../../Shared/FetchMessageWindow";
 import { useLayoutEffect } from "react";
 
 export default function BaseBlock(props) {

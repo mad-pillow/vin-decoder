@@ -1,7 +1,7 @@
 import "./app.scss";
 import React, { Component } from "react";
-import Header from "./Header/Header";
-import Main from "./Main/Main";
+import Header from "./Header";
+import Main from "./Main";
 import VinService from "../../services/VinService";
 
 class App extends Component {
