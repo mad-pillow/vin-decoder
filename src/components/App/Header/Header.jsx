@@ -27,9 +27,9 @@ export default class Header extends Component {
     let openMenuClassName = "";
 
     if (this.state.isMenuClose) {
-      openMenuClassName = " header__nav-container--closed";
       document.body.style.overflow = "auto";
     } else {
+      openMenuClassName = " header__nav-container--visible";
       document.body.style.overflow = "hidden";
     }
 

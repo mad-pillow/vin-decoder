@@ -2,12 +2,11 @@ import './infoBlock.scss';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function InfoBlock( props ) {
+export default function InfoBlock({ info, isNavigable }) {
   let tableHeaders = ["Header 1", "Header 2"];
   let infoValuesRows = [];
   let navigate = useNavigate();
 
-  const { info, isNavigable } = props;
   const rowIsClickable = isNavigable ? " info__row--clickable" : "";
 
   function navigateTo(linkId) {

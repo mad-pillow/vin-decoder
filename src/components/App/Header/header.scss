@@ -14,11 +14,11 @@
 
   &__nav-container {
     overflow: auto;
-    transition: all 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 
-    &--closed {
+    &--visible {
       @media screen and (max-width: 640px) {
-        transform: translateX(100%);
+        transform: translateX(-100%);
       }
     }
 
@@ -26,7 +26,7 @@
       position: fixed;
       z-index: 100;
       top: 0;
-      left: 0;
+      left: 100%;
       width: 100%;
       height: 100vh;
       background-color: var(--dark-gray);

@@ -1,29 +1,37 @@
 import "./app.scss";
 import React, { Component } from "react";
 import Header from "./Header";
-import Main from "./Main";
 import VinService from "../../services/VinService";
+import { GlobalContext, globalState } from "../../contexts/context";
+import BaseBlock from './BaseBlock';
+import Variables from './Variables';
+import { Routes, Route } from "react-router-dom";
+import VariableDetails from './Variables/VariableDetails';
 
 class App extends Component {
   constructor() {
     super();
 
     this.vinService = new VinService();
-    this.handleVariables();
 
     this.state = {
-      activeVIN: "",
-      VINList: JSON.parse(localStorage.getItem("VINList")) || [null, null, null, null, null],
-      carDataList: JSON.parse(localStorage.getItem("CarDataList")) || {},
-      fetchCarDataMessage: "",
-      carDataFetching: null,
-      variables: [],
-      fetchVariablesMessage: "",
-      variablesFetching: null,
-    }
+      ...globalState,
+      vinList: JSON.parse(localStorage.getItem("vinList")) || [null, null, null, null, null],
+      carDataList: JSON.parse(localStorage.getItem("carDataList")) || {},
+      handleVinList: this.handleVinList,
+      handleActiveVin: this.handleActiveVin,
+      handleVinListChoise: this.handleVinListChoise,
+      handleCarDataList: this.handleCarDataList,
+      preventCarInfoFetchMsg: this.preventCarInfoFetchMsg,
+      preventVariablesFetchMsg: this.preventVariablesFetchMsg,
+    };
   }
 
-  handleVariables = () => {
+  componentDidMount() {
+    this.initVariables();
+  }
+
+  initVariables = () => {
     this.setState({ variablesFetching: true });
     
     this.vinService.getVariables().then(data => {
@@ -36,7 +44,7 @@ class App extends Component {
   }
 
   handleCarInfo = (vin) => {
-    if (this.state.VINList.includes(vin)) {
+    if (this.state.vinList.includes(vin)) {
       return;
     }
 
@@ -46,7 +54,7 @@ class App extends Component {
       let carDataListClone = JSON.parse(JSON.stringify(this.state.carDataList));
 
       carDataListClone[vin] = data.carData;
-      localStorage.setItem("CarDataList", JSON.stringify(carDataListClone));
+      localStorage.setItem("carDataList", JSON.stringify(carDataListClone));
       this.setState({ carDataList: carDataListClone, fetchCarDataMessage: data.message, carDataFetching: false });
     });
   }
@@ -61,19 +69,19 @@ class App extends Component {
     this.setState({ carDataList: carDataListClone });
   }
 
-  handleVINList = (VINListClone) => {
-    localStorage.setItem("VINList", JSON.stringify(VINListClone));
-    this.setState({ VINList: VINListClone });
+  handleVinList = (vinListClone) => {
+    localStorage.setItem("vinList", JSON.stringify(vinListClone));
+    this.setState({ vinList: vinListClone });
   }
 
-  handleActiveVIN = (activeVIN) => {
-    this.setState({ activeVIN });
-    this.handleCarInfo(activeVIN);
+  handleActiveVin = (activeVin) => {
+    this.setState({ activeVin });
+    this.handleCarInfo(activeVin);
   }
 
-  handleVINListChoose = (e) => {
+  handleVinListChoise = (e) => {
     const listItemId = e.target.dataset.value;
-    let VINListClone = this.state.VINList;
+    let VINListClone = this.state.vinList;
 
     if (!listItemId || listItemId === "Empty slot") {
       return;
@@ -82,33 +90,27 @@ class App extends Component {
     VINListClone = VINListClone.filter(item => item !== listItemId);
     VINListClone.unshift(listItemId);
 
-    localStorage.setItem("VINList", JSON.stringify(VINListClone));
-    this.setState({ VINList: VINListClone });
-    this.handleActiveVIN(VINListClone[0]);
+    localStorage.setItem("vinList", JSON.stringify(VINListClone));
+    this.setState({ vinList: VINListClone });
+    this.handleActiveVin(VINListClone[0]);
   }
   
   render() {
     return (
       <div className="wrapper">
         <Header />
-        <Main
-          infoCarData={this.state.carDataList[this.state.activeVIN]}
-          infoVariables={this.state.variables}
-          fetchVariablesMessage={this.state.fetchVariablesMessage}
-          fetchCarDataMessage={this.state.fetchCarDataMessage}
-          variablesFetching={this.state.variablesFetching}
-          carDataFetching={this.state.carDataFetching}
-          handleVINList={this.handleVINList}
-          handleActiveVIN={this.handleActiveVIN}
-          handleVINListChoose={this.handleVINListChoose}
-          VINList={this.state.VINList}
-          handleCarDataList={this.handleCarDataList}
-          preventCarInfoFetchMsg={this.preventCarInfoFetchMsg}
-          preventVariablesFetchMsg={this.preventVariablesFetchMsg}
-          />
+          <main className="main-container">
+            <GlobalContext.Provider value = {this.state}>
+              <Routes>
+                <Route exact path="/" element={<BaseBlock />} />
+                <Route exact path="/variables" element={<Variables />} />
+                <Route exact path="/variables/:id" element={<VariableDetails />}/>
+              </Routes>
+            </GlobalContext.Provider>
+          </main>
       </div>
     );
-  }  
+  }
 }
 
 export default App;

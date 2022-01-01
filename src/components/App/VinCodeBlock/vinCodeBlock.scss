@@ -61,6 +61,29 @@
     color: var(--blue);
   }
 
+  &__request-form {
+    position: relative;
+    z-index: 0;
+
+    &::before {
+      content: "Enter latin letters or/and digits only";
+      position: absolute;
+      z-index: -1;
+      padding: 5px 10px;
+      top: 0;
+      left: 50%;
+      width: max-content;
+      transform: translate(-50%, 0);
+      background-color: #ff0000;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &--wrong::before {
+      transform: translate(-50%, -110%);
+    }
+  }
+
   &__request-btn {
     cursor: pointer;
   }
