@@ -11,12 +11,15 @@ export default function VinCodeBlock() {
   const vinRegex = /^([A-Z0-9])*$/gi;
 
   const handleChange = (e) => {
-    if (vinRegex.test(e.target.value)) { 
+    const { value } = e.target;
+
+    if (vinRegex.test(value)) { 
       setIsVinCorrect(true);
     } else {
       setIsVinCorrect(false);
     }
-    setCurrentVin(e.target.value.toUpperCase());
+    
+    setCurrentVin(value.toUpperCase());    
   }
   
   const vinNodesList = vinList.map((vin, index) => {
@@ -40,9 +43,11 @@ export default function VinCodeBlock() {
       <div className="vin-code__request-block">
         <form className={vinInputClassName} onSubmit={(e) => {
           e.preventDefault();
-          handleVinSubmit(currentVin);
-          vinInputRef.current.focus();
-          vinInputRef.current.value = "";
+          if (currentVin && currentVin.length === 17) {
+            handleVinSubmit(currentVin);
+            vinInputRef.current.focus();
+            vinInputRef.current.value = "";
+          }
         }}>
           <input type="text"
             className="vin-code__request-input"
