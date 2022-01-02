@@ -66,7 +66,7 @@
     z-index: 0;
 
     &::before {
-      content: "Enter 17 latin letters or/and digits";
+      content: 'Enter 17 latin letters or/and digits';
       position: absolute;
       z-index: -1;
       padding: 5px 10px;

@@ -1,6 +1,6 @@
 class VinService {
   constructor() {
-    this.API_URL = "https://vpic.nhtsa.dot.gov/api/vehicles/";
+    this.API_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles/';
 
     this.getCarData = this.getCarData.bind(this);
     this.getVariables = this.getVariables.bind(this);

@@ -13,57 +13,68 @@ export default function VinCodeBlock() {
   const handleChange = (e) => {
     const { value } = e.target;
 
-    if (vinRegex.test(value)) { 
+    if (vinRegex.test(value)) {
       setIsVinCorrect(true);
     } else {
       setIsVinCorrect(false);
     }
-    
-    setCurrentVin(value.toUpperCase());    
-  }
-  
+
+    setCurrentVin(value.toUpperCase());
+  };
+
   const vinNodesList = vinList.map((vin, index) => {
-    const vinNodeText = vin ? vin : "Empty slot";
-    
-    return <li
-      key={index}
-      data-value={vinNodeText}
-      className="vin-code__history-item"
-      onClick={(e) => {
-        handleVinListChoise(e);
-        setIsVinCorrect(true);
-      }}>{vinNodeText}</li >;
+    const vinNodeText = vin ? vin : 'Empty slot';
+
+    return (
+      <li
+        key={index}
+        data-value={vinNodeText}
+        className="vin-code__history-item"
+        onClick={(e) => {
+          handleVinListChoise(e);
+          setIsVinCorrect(true);
+        }}
+      >
+        {vinNodeText}
+      </li>
+    );
   });
 
-  const vinInputClassName = isVinCorrect ? "vin-code__request-form" : "vin-code__request-form vin-code__request-form--wrong";
-
+  const vinInputClassName = isVinCorrect
+    ? 'vin-code__request-form'
+    : 'vin-code__request-form vin-code__request-form--wrong';
 
   return (
     <div className="vin-code__container">
       <div className="vin-code__request-block">
-        <form className={vinInputClassName} onSubmit={(e) => {
-          e.preventDefault();
-          if (currentVin && currentVin.length === 17) {
-            handleVinSubmit(currentVin);
-            vinInputRef.current.focus();
-            vinInputRef.current.value = "";
-          }
-        }}>
-          <input type="text"
+        <form
+          className={vinInputClassName}
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (currentVin && currentVin.length === 17) {
+              handleVinSubmit(currentVin);
+              vinInputRef.current.focus();
+              vinInputRef.current.value = '';
+            }
+          }}
+        >
+          <input
+            type="text"
             className="vin-code__request-input"
             ref={vinInputRef}
             minLength="17"
             maxLength="17"
             placeholder="Enter VIN code"
-            onChange={handleChange} />
-          <button type="submit" className="vin-code__request-btn" disabled={!isVinCorrect}>Request VIN</button>
+            onChange={handleChange}
+          />
+          <button type="submit" className="vin-code__request-btn" disabled={!isVinCorrect}>
+            Request VIN
+          </button>
         </form>
       </div>
       <div className="vin-code__history-block">
-        <ul className="vin-code__history-list">
-          {vinNodesList}
-        </ul>
+        <ul className="vin-code__history-list">{vinNodesList}</ul>
       </div>
     </div>
-  )  
-} 
+  );
+}

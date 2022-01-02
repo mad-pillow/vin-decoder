@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
-import vinService from "../services/VinService";
+import React, { useState, useContext, useEffect } from 'react';
+import vinService from '../services/VinService';
 
 const VariablesContext = React.createContext();
 
@@ -8,7 +8,7 @@ export const useVariablesContext = () => {
 };
 
 export function VariablesProvider({ children }) {
-  const storedVariablesData = JSON.parse(localStorage.getItem("storedVariablesData"));
+  const storedVariablesData = JSON.parse(localStorage.getItem('storedVariablesData'));
 
   const [variables, setVariables] = useState(storedVariablesData && storedVariablesData.variables);
   const [fetchVariablesMessage, setFetchVariablesMessage] = useState(
@@ -25,10 +25,10 @@ export function VariablesProvider({ children }) {
         setFetchVariablesMessage(data.message);
         setIsVariablesFetching(false);
         localStorage.setItem(
-          "storedVariablesData",
+          'storedVariablesData',
           JSON.stringify({
             variables: variables,
-            fetchVariablesMessage: fetchVariablesMessage
+            fetchVariablesMessage: fetchVariablesMessage,
           })
         );
       });

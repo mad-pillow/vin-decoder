@@ -1,3 +1,3 @@
-import BaseBlock from "./BaseBlock";
+import BaseBlock from './BaseBlock';
 
 export default BaseBlock;

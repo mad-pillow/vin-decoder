@@ -8,16 +8,14 @@ export default function Variables() {
   const { variables, fetchVariablesMessage, isVariablesFetching } = useVariablesContext();
 
   if (isVariablesFetching) {
-    return (
-      <Spinner/>
-    )
+    return <Spinner />;
   }
 
   return (
     <>
       <h2 className="page-title">You can find the list of all available VIN decryption variables below:</h2>
       <InfoBlock info={variables} isNavigable={true} />
-      <FetchMessageWindow fetchMessage={fetchVariablesMessage} isFetching={isVariablesFetching}/>
+      <FetchMessageWindow fetchMessage={fetchVariablesMessage} isFetching={isVariablesFetching} />
     </>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import "./fecthMessageWindow.scss";
+import './fecthMessageWindow.scss';
 
-export default function FetchMessageWindow({ fetchMessage, isFetching}) {
+export default function FetchMessageWindow({ fetchMessage, isFetching }) {
   if (isFetching === null) {
     return null;
   }
@@ -9,5 +9,5 @@ export default function FetchMessageWindow({ fetchMessage, isFetching}) {
     <div className="fetch-message__container">
       <p className="fetch-message__message">{fetchMessage}</p>
     </div>
-  )
+  );
 }

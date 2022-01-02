@@ -1,3 +1,3 @@
-import InfoBlock from "./InfoBlock";
+import InfoBlock from './InfoBlock';
 
 export default InfoBlock;

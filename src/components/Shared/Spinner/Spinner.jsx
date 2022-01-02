@@ -1,4 +1,4 @@
-import "./spinner.scss";
+import './spinner.scss';
 
 export default function Spinner() {
   return (
@@ -11,5 +11,5 @@ export default function Spinner() {
         </div>
       </div>
     </div>
-  )
+  );
 }

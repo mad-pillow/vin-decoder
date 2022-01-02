@@ -1,3 +1,3 @@
-import VariableDetails from "./VariableDetails";
+import VariableDetails from './VariableDetails';
 
 export default VariableDetails;

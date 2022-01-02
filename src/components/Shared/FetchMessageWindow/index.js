@@ -1,3 +1,3 @@
-import FetchMessageWindow from "./FetchMessageWindow";
+import FetchMessageWindow from './FetchMessageWindow';
 
 export default FetchMessageWindow;
