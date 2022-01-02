@@ -8,18 +8,23 @@ export default function VinCodeBlock() {
   const [isVinCorrect, setIsVinCorrect] = useState(true);
 
   const { vinList, handleVinSubmit, handleVinListChoise } = useVehicleContext();
-  const vinRegex = /^([A-Z0-9])*$/gi;
+  const vinChangeRegex = /^[A-Z0-9]*$/gi;
+  const vinSubmitRegex = /^[A-Z0-9]{17}$/gi;
 
   const handleChange = (e) => {
-    const { value } = e.target;
+    const target = e.target;
+    let { value } = target;
+    target.value = value = value.toUpperCase();
+
+    const vinRegex = value.length > 17 ? vinSubmitRegex : vinChangeRegex;
 
     if (vinRegex.test(value)) {
       setIsVinCorrect(true);
-    } else {
-      setIsVinCorrect(false);
+      setCurrentVin(value);
+      return;
     }
 
-    setCurrentVin(value.toUpperCase());
+    setIsVinCorrect(false);
   };
 
   const vinNodesList = vinList.map((vin, index) => {
@@ -33,8 +38,7 @@ export default function VinCodeBlock() {
         onClick={(e) => {
           handleVinListChoise(e);
           setIsVinCorrect(true);
-        }}
-      >
+        }}>
         {vinNodeText}
       </li>
     );
@@ -56,8 +60,7 @@ export default function VinCodeBlock() {
               vinInputRef.current.focus();
               vinInputRef.current.value = '';
             }
-          }}
-        >
+          }}>
           <input
             type="text"
             className="vin-code__request-input"
