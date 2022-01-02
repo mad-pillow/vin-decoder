@@ -2,18 +2,9 @@ import InfoBlock from "../../Shared/InfoBlock";
 import Spinner from "../../Shared/Spinner";
 import VinCodeBlock from "../VinCodeBlock";
 import FetchMessageWindow from "../../Shared/FetchMessageWindow";
-import { useEffect, useContext } from "react";
-import { GlobalContext } from "../../../contexts/context";
+import { useVehicleContext } from "../../../contexts/VehicleContext";
 
 export default function BaseBlock() {
-  const { preventCarInfoFetchMsg } = useContext(GlobalContext);
-
-  useEffect(() => {
-    return () => {
-      preventCarInfoFetchMsg();
-    }
-  }, [preventCarInfoFetchMsg]);
-
   return (
     <>
       <VinCodeBlock />
@@ -23,9 +14,9 @@ export default function BaseBlock() {
 }
 
 function InfoBlockContainer() {
-  const { fetchCarDataMessage, carDataFetching, activeVin, carDataList } = useContext(GlobalContext);
+  const { fetchCarDataMessage, isCarDataFetching, activeVin, carDataList } = useVehicleContext();
 
-  if (carDataFetching) {
+  if (isCarDataFetching) {
     return (
       <Spinner/>
     )
@@ -34,7 +25,7 @@ function InfoBlockContainer() {
   return (
     <>
       <InfoBlock info={carDataList[activeVin]} isNavigable={true}/>
-      <FetchMessageWindow fetchMessage={fetchCarDataMessage} isFetching={carDataFetching} />
+      <FetchMessageWindow fetchMessage={fetchCarDataMessage} isFetching={isCarDataFetching} />
     </>
   )
 }

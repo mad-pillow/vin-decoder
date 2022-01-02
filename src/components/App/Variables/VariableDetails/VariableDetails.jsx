@@ -1,8 +1,8 @@
 import './variableDetails.scss';
-import { useParams } from "react-router-dom"
-import VinService from '../../../../services/VinService';
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import Spinner from '../../../Shared/Spinner';
+import vinService from '../../../../services/VinService';
 
 export default function VariableDetails() {
   const { id } = useParams();
@@ -10,7 +10,6 @@ export default function VariableDetails() {
   const [fetchingVariable, setFetchingVariable] = useState(false);
 
   useEffect((vin) => {
-    const vinService = new VinService();
     setFetchingVariable(true);
     
     vinService.getVariableDetails(id).then(data => {

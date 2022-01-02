@@ -2,19 +2,12 @@ import './variables.scss';
 import InfoBlock from '../../Shared/InfoBlock';
 import Spinner from '../../Shared/Spinner';
 import FetchMessageWindow from '../../Shared/FetchMessageWindow';
-import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../contexts/context';
+import { useVariablesContext } from '../../../contexts/VariablesContext';
 
 export default function Variables() {
-  const { variables, variablesFetching, fetchVariablesMessage, preventVariablesFetchMsg } = useContext(GlobalContext);  
+  const { variables, fetchVariablesMessage, isVariablesFetching } = useVariablesContext();
 
-  useEffect(() => {
-    return () => {
-      preventVariablesFetchMsg();
-    }
-  }, [preventVariablesFetchMsg]);
-
-  if (variablesFetching) {
+  if (isVariablesFetching) {
     return (
       <Spinner/>
     )
@@ -24,7 +17,7 @@ export default function Variables() {
     <>
       <h2 className="page-title">You can find the list of all available VIN decryption variables below:</h2>
       <InfoBlock info={variables} isNavigable={true} />
-      <FetchMessageWindow fetchMessage={fetchVariablesMessage} isFetching={variablesFetching}/>
+      <FetchMessageWindow fetchMessage={fetchVariablesMessage} isFetching={isVariablesFetching}/>
     </>
   )
 }

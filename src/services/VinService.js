@@ -54,4 +54,6 @@ class VinService {
   }
 }
 
-export default VinService;
+const vinService = new VinService();
+
+export default vinService;
