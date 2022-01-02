@@ -35,8 +35,13 @@ export function VariablesProvider({ children }) {
     }
   }, [storedVariablesData, variables, fetchVariablesMessage]);
 
+  const closeFetchVariablesMessage = () => {
+    setIsVariablesFetching(null);
+  };
+
   return (
-    <VariablesContext.Provider value={{ variables, fetchVariablesMessage, isVariablesFetching }}>
+    <VariablesContext.Provider
+      value={{ variables, fetchVariablesMessage, isVariablesFetching, closeFetchVariablesMessage }}>
       {children}
     </VariablesContext.Provider>
   );

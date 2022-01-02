@@ -5,7 +5,7 @@ import FetchMessageWindow from '../../Shared/FetchMessageWindow';
 import { useVariablesContext } from '../../../contexts/VariablesContext';
 
 export default function Variables() {
-  const { variables, fetchVariablesMessage, isVariablesFetching } = useVariablesContext();
+  const { variables, fetchVariablesMessage, isVariablesFetching, closeFetchVariablesMessage } = useVariablesContext();
 
   if (isVariablesFetching) {
     return <Spinner />;
@@ -15,7 +15,11 @@ export default function Variables() {
     <>
       <h2 className="page-title">You can find the list of all available VIN decryption variables below:</h2>
       <InfoBlock info={variables} isNavigable={true} />
-      <FetchMessageWindow fetchMessage={fetchVariablesMessage} isFetching={isVariablesFetching} />
+      <FetchMessageWindow
+        fetchMessage={fetchVariablesMessage}
+        isFetching={isVariablesFetching}
+        closeWindow={closeFetchVariablesMessage}
+      />
     </>
   );
 }

@@ -14,7 +14,8 @@ export default function BaseBlock() {
 }
 
 function InfoBlockContainer() {
-  const { fetchCarDataMessage, isCarDataFetching, activeVin, carDataList } = useVehicleContext();
+  const { fetchCarDataMessage, isCarDataFetching, activeVin, carDataList, closeFetchCarDataMessage } =
+    useVehicleContext();
 
   if (isCarDataFetching) {
     return <Spinner />;
@@ -22,8 +23,12 @@ function InfoBlockContainer() {
 
   return (
     <>
-      <InfoBlock info={carDataList[activeVin]} isNavigable={true} />
-      <FetchMessageWindow fetchMessage={fetchCarDataMessage} isFetching={isCarDataFetching} />
+      <InfoBlock info={carDataList[activeVin]} isNavigable={false} />
+      <FetchMessageWindow
+        fetchMessage={fetchCarDataMessage}
+        isFetching={isCarDataFetching}
+        closeWindow={closeFetchCarDataMessage}
+      />
     </>
   );
 }

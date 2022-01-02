@@ -86,6 +86,10 @@ export function VehicleProvider({ children }) {
     _handleVinList(vinListClone);
   };
 
+  const closeFetchCarDataMessage = () => {
+    setIsCarDataFetching(null);
+  };
+
   return (
     <VehicleContext.Provider
       value={{
@@ -96,8 +100,8 @@ export function VehicleProvider({ children }) {
         vinList,
         handleVinSubmit,
         handleVinListChoise,
-      }}
-    >
+        closeFetchCarDataMessage,
+      }}>
       {children}
     </VehicleContext.Provider>
   );
